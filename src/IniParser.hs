@@ -35,8 +35,6 @@ main = do
   parseIniFile path >>= \case
     Right ini -> putStrLn $ "Parsed INI: " ++ show ini
     Left err  -> putStrLn $ "ERROR parsing ini: " ++ err
-  where
-    iniFilePath = "/home/me/test.ini"
 
 parseIniFile :: FilePath -> IO (Either String Ini)
 parseIniFile iniFilePath = parseIni . pack <$> readFile iniFilePath
