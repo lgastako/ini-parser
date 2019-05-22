@@ -46,7 +46,7 @@ ini :: Parser Ini
 ini = do
   defaultSection <- lexeme (Section "" <$> (Map.fromList <$> many' property))
   namedSections  <- lexeme (many' section)
-  void $ endOfInput
+  void endOfInput
   let allSections | null (properties defaultSection) = namedSections
                   | otherwise = defaultSection:namedSections
   pure . Map.fromList . map (\section -> (name section, section))
